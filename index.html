@@ -6,6 +6,14 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Lab 9</title>
+  <script src="https://cdn.trackjs.com/agent/v3/latest/t.js"></script>
+  <script>
+    window.TrackJS && TrackJS.install({ 
+      token: "ae96c59d6ec74228b75c745f116463e8"
+      // for more configuration options, see https://docs.trackjs.com
+    });
+  </script>
+                        
 
   <style>
     button {
@@ -102,6 +110,74 @@
 
     // Start your code here
     // You may move this JS to another file if you wish
+    errorBtns[0].onclick = function(){console.log('Console Log Demo')};
+    errorBtns[1].onclick = function(){console.error('Console Error Demo')};
+    errorBtns[2].onclick = function(){'Count Button:' + console.count()};
+    errorBtns[3].onclick = function(){console.warn('Console Warn Button')};
+    let number = 2;
+    let ans = 3;
+    let reason = 'The number does not equal the answer';
+    errorBtns[4].onclick = function(){console.assert(number == ans, {number, ans, reason})};
+    errorBtns[5].onclick = function(){console.clear()};
+    errorBtns[6].onclick = function(){console.dir(errorBtns[6])};
+    errorBtns[7].onclick = function(){console.dirxml(errorBtns[7])};
+    errorBtns[8].onclick = function(){console.group('console.group')};
+    errorBtns[9].onclick = function(){console.groupEnd('console.group')};
+    var classes = [
+      {
+        name: 'Software Engineering',
+        num: '110',
+      },
+      {
+        name: 'Programming Languages: Principles and Paradigms',
+        num: '130'
+      },
+      {
+        name: 'Advanced Software Engineering',
+        num: '112',
+      }
+    ];
+    errorBtns[10].onclick = function(){console.table(classes)};
+    errorBtns[11].onclick = function(){console.time()};
+    errorBtns[12].onclick = function(){console.timeEnd()};
+    errorBtns[13].onclick = function(){console.trace()};
+    errorBtns[14].onclick = function(){
+      if (window.onerror) {
+        var ErrHandler = function(msg) {
+          console.log('Error message: '+ msg);
+          window.onerror = ErrHandler;
+        }
+      }
+    }
+    
+    // try/catch/finally/throw
+    try {
+      let c = JSON.parse(classes[4]);
+      if (!c) {
+        throw new SyntaxError("Incomplete data: no class"); 
+      }
+      } catch (err) {
+        console.error(err);
+      } finally {
+        console.log('logged')
+    }
+
+    // throw and custom errors
+    class Err {
+      constructor(message) {
+        this.message = message;
+        this.name = "Err";
+      }
+    }
+    class ExtendError extends Err {
+      constructor(message) {
+        super(message);
+        this.name = "ValidationError";
+      }
+    }
+
+    throw new ExtendError("WRONG");
+
   </script>
 </body>
 
