@@ -142,12 +142,9 @@
     errorBtns[12].onclick = function(){console.timeEnd()};
     errorBtns[13].onclick = function(){console.trace()};
     errorBtns[14].onclick = function(){
-      if (window.onerror) {
-        var ErrHandler = function(msg) {
-          console.log('Error message: '+ msg);
-          window.onerror = ErrHandler;
-        }
-      }
+      window.onerror = function (error, url, line) {
+            console.log("Error: " + error);
+        };
     }
     
     // try/catch/finally/throw
