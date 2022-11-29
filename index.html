@@ -142,9 +142,21 @@
     errorBtns[12].onclick = function(){console.timeEnd()};
     errorBtns[13].onclick = function(){console.trace()};
     errorBtns[14].onclick = function(){
-      window.onerror = function (error, url, line) {
-            console.log("Error: " + error);
-        };
+      window.onerror=function(error){
+          console.log(error);
+      }
+      window.addEventListener("error",function(error){
+          console.log(error);
+      });
+      (async function(){
+        try{
+          let foo= ((await(await fetch(boom)).json()));
+          }
+          catch(error){
+            console.log("Sadly an error happened my friend");
+            console.log(error);
+          }
+    })();
     }
     
     // try/catch/finally/throw
